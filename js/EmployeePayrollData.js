@@ -10,8 +10,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let employeePayrollData = new EmployeePayrollData();
             employeePayrollData.name = name.value;;
             textError.textContent = "";
-        } catch (e) {
-            textError.textContent = e;
+        } catch (error) {
+            textError.textContent = error;
         }
     });
 
@@ -81,4 +81,35 @@ const getInputValueById = (id) => {
 const getInputElementValue = (id) => {
     let value = document.getElementById(id).value;
     return value;
+}
+
+// Reset Form
+const resetForm = () => {
+    setValue("#name", "");
+    setValue("#salary","");
+    setTextValue(".salary-output", getInputValueById("#salary"));
+    setValue("#notes","");
+    setValue("#day","1");
+    setValue("#month","Auguest");
+    setValue("#year","2020");
+    unsetSelectedValues("[name = profile]");
+    unsetSelectedValues("[name = gender]");
+    unsetSelectedValues("[name = department]");
+}
+
+const unsetSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        item.checked = false;
+    });
+}
+
+const setTextValue = (id,value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
+}
+
+const setValue = (id,value) => {
+    const element = document.querySelector(id);
+    element.value = value;
 }
